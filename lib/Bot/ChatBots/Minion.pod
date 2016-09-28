@@ -55,26 +55,170 @@ This document describes Bot::ChatBots::Minion version {{[ version ]}}.
 
 =head1 DESCRIPTION
 
-This module allows you to...
+(Note: you are supposed to be familiar with L<Data::Tubes> terminology).
 
-=head1 FUNCTIONS
+This module allows you to break a potentially blocking long pipeline of
+operations into two parts, shifting the second part for execution in
+a Mojolicious Minion.
 
-=head2 B<< whatever >>
+For example, suppose you are using both L<Data::Tubes> and
+L<Bot::ChatBots::Telegram::WebHook> in a L<Mojolicious::Lite> app like
+this:
 
+   use Mojolicious::Lite;
+   use Data::Tubes qw< pipeline >;
+
+   my $pipeline = pipeline(
+      \&simple_operation_1,
+      \&simple_operation_2,
+      \&long_running_operation,
+      \&simple_operation_3,
+      {tap => sink},
+   );
+
+   plugin Bot::ChatBots::Telegram => sources => [
+      'Bot::ChatBots::Telegram::WebHook',
+      processor => $pipeline,
+      ...
+   ];
+
+   app->start;
+
+When a new update comes, it will eventually hit C<long_running_operation>
+and block your frontend process. Ouch! This is what you can do instead:
+
+   use Mojolicious::Lite;
+   use Data::Tubes qw< pipeline >;
+
+   # configure Minion before calling Bot::ChatBots::Minion
+   plugin Minion => ...;
+
+   # configure Bot::ChatBots::Minion to execute the second part of the
+   # pipeline, for delayed execution of long_running_operation and following
+   plugin 'Bot::ChatBots::Minion',
+      dequeuer => pipeline(
+         \&long_running_operation,
+         \&simple_operation_3,
+         {tap => sink},
+      );
+
+   # now app->chatbots->minion->enqueuer represents the delayed execution of
+   # the long-running part of the original pipeline, so we set it as the
+   # last step in our pipeline
+   my $pipeline = pipeline(
+      \&simple_operation_1,
+      \&simple_operation_2,
+      app->chatbots->minion->enqueuer,
+      {tap => sink},
+   );
+
+   # the rest is as before
+   plugin Bot::ChatBots::Telegram => sources => [
+      'Bot::ChatBots::Telegram::WebHook',
+      processor => $pipeline,
+      ...
+   ];
+
+   app->start;
+
+So the trick is to divide the long-running pipeline into two parts, where the
+long-running step is the first one in the second half. You first provide this
+second long-running half to Bot::ChatBots::Minion as its C<dequeuer> (aliased
+to C<processor> for your convenience), obtaining an object that you can
+retrieve via C<< app->chatbots->minion >> and whose L</enqueuer> method allows
+you to get a tube for enqueuing records.
 
 
 =head1 METHODS
 
-=head2 B<< whatever >>
+=head2 B<< dequeuer >>
 
+   my $sub_reference = $obj->dequeuer;
+   $obj->dequeuer(sub { ... });
+
+Accessor for the dequeue function. This is supposed to be a tube-compliant
+sub reference that is executed inside a Minion worker.
+
+You will probably not need to set it directly, in particular if you load
+the class as a plugin in L<Mojolicious> or L<Mojolicious::Lite> because in
+that case you MUST pass it as parameter C<dequeuer> or C<processor>.
+
+=head2 B<< enqueue >>
+
+   $obj->enqueue($record);
+
+You should not need to call this directly, it is used by L</enqueuer> behind
+the scenes.
+
+=head2 B<< enqueuer >>
+
+   my $sub_reference = $obj->enqueuer;
+
+   # most of the times you will get it like this:
+   my $sub = $app->chatbots->minion->enqueuer;
+
+Get a tube-compliant sub reference for enqueuing records for delayed
+execution inside a Minion.
+
+=head2 B<< logger >>
+
+   my $logger = $obj->logger;
+   $obj->logger($new_logger);
+
+Accessor for the logger, defaults to L<Log::Any/get_logger>.
+
+=head2 B<< minion >>
+
+   my $minion = $obj->minion;
+   $obj->minion($new_minion_ref);
+
+Accessor for the minion object.
+
+=head2 B<< name >>
+
+   my $name = $obj->name;
+   $obj->name('new name');
+
+Accessor for the name of the object, also used as topic for queuing tasks.
+Defaults to the value of L</typename>.
+
+=head2 B<< register >>
+
+   $obj->register($app, $conf);
+
+   # implicitly called when you load the class as a Mojolicious::Plugin
+   plugin 'Bot::ChatBots::Minion' => %conf;
+
+Plugin registration method, consumed by Mojolicious when loading this
+class as a plugin.
+
+=head2 B<< sink >>
+
+   my $sink = $obj->sink;
+   $obj->sink($boolean_value);
+
+Accessor for a flag indicating whether L</enqueue> (and consequently the
+L</enqueuer> when invoked) should return the input record for further
+processing or not. Defaults to a I<false> value, which means that the
+record is passed over for further processing; when set to a I<true> value
+the enqueuer returns nothing.
+
+=head2 B<< typename >>
+
+   my $typename = $obj->typename;
+   $obj->typename('new typename');
+
+Accessor for a I<typename> string that can be useful for
+logging/debugging. Defaults to the package name of which the object is
+blessed (via C<ref>) or to the name of the package.
 
 =head1 BUGS AND LIMITATIONS
 
-Report bugs either through RT or GitHub (patches welcome).
+Report bugs through GitHub (patches welcome).
 
 =head1 SEE ALSO
 
-Foo::Bar.
+L<Bot::ChatBots>, L<Bot::ChatBots::Telegram>.
 
 =head1 AUTHOR
 
