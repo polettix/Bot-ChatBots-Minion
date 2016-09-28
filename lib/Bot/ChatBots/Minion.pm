@@ -30,11 +30,14 @@ sub register {
    my $minion = $app->minion
      or ouch 500, 'plugin Minion MUST be loaded for Bot::ChatBots::Minion';
    $self->minion($minion);    # not really needed actually...
-   my $processor = $conf->{processor}
+   my $processor = $conf->{dequeuer} // $conf->{processor}
      or ouch 500, 'no processor for dequeuing defined';
    $self->dequeuer($processor);
-   $minion->add_task($self->name, sub { $self->dequeuer->(@_) });
-   $app->helper('chatbots.minion' => $self);
+   $self->typename($conf->{typename}) if defined $conf->{typename};
+   $self->name($conf->{name}) if defined $conf->{name};
+   $self->sink($conf->{sink}) if exists $conf->{sink};
+   $minion->add_task($self->name, sub { shift; $self->dequeuer->(@_) });
+   $app->helper('chatbots.minion' => sub { $self });
    return $self;
 } ## end sub register
 
