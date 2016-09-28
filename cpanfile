@@ -3,8 +3,9 @@ requires 'Mojolicious', '7.08';
 requires 'Minion',      '6.0';
 
 on test => sub {
-   requires 'Test::More', '0.88';
-   requires 'Path::Tiny', '0.096';
+   requires 'Test::More',              '0.88';
+   requires 'Path::Tiny',              '0.096';
+   requires 'Minion::Backend::SQLite', '0.007';
 };
 
 on develop => sub {
