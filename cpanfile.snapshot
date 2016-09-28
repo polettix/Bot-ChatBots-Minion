@@ -161,6 +161,36 @@ DISTRIBUTIONS
       IO::Socket 0
       Socket 1.97
       Test::More 0.88
+  Log-Any-1.042
+    pathname: P/PR/PREACTION/Log-Any-1.042.tar.gz
+    provides:
+      Log::Any 1.042
+      Log::Any::Adapter 1.042
+      Log::Any::Adapter::Base 1.042
+      Log::Any::Adapter::File 1.042
+      Log::Any::Adapter::Null 1.042
+      Log::Any::Adapter::Stderr 1.042
+      Log::Any::Adapter::Stdout 1.042
+      Log::Any::Adapter::Test 1.042
+      Log::Any::Adapter::Util 1.042
+      Log::Any::Manager 1.042
+      Log::Any::Proxy 1.042
+      Log::Any::Proxy::Null 1.042
+      Log::Any::Proxy::Test 1.042
+      Log::Any::Test 1.042
+    requirements:
+      B 0
+      Carp 0
+      Data::Dumper 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.17
+      Fcntl 0
+      IO::File 0
+      Test::Builder 0
+      constant 0
+      perl 5.008001
+      strict 0
+      warnings 0
   Minion-6.0
     pathname: S/SR/SRI/Minion-6.0.tar.gz
     provides:
@@ -351,6 +381,13 @@ DISTRIBUTIONS
       JSON::PP 2.27103
       Pod::Simple 3.09
       Time::Local 1.2
+  Ouch-0.0409
+    pathname: R/RI/RIZEN/Ouch-0.0409.tar.gz
+    provides:
+      Ouch 0.0409
+    requirements:
+      ExtUtils::MakeMaker 6.30
+      Test::More 0
   Path-Tiny-0.096
     pathname: D/DA/DAGOLDEN/Path-Tiny-0.096.tar.gz
     provides:

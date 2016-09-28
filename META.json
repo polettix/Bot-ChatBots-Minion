@@ -39,11 +39,16 @@
       },
       "runtime" : {
          "requires" : {
+            "Log::Any" : "1.042",
+            "Minion" : "6.0",
+            "Mojolicious" : "7.08",
+            "Ouch" : "0.0409",
             "perl" : "5.010"
          }
       },
       "test" : {
          "requires" : {
+            "Minion::Backend::SQLite" : "0.007",
             "Path::Tiny" : "0.096",
             "Test::More" : "0.88"
          }

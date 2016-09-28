@@ -3,7 +3,7 @@ use strict;
 use Ouch;
 { our $VERSION = '0.001'; }
 
-use Mojo::Base '-base';
+use Mojo::Base 'Mojolicious::Plugin';
 use Log::Any ();
 
 has dequeuer  => sub { ouch 500, 'no dequeuer set' };
