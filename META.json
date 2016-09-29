@@ -39,6 +39,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Bot::ChatBots" : "0",
             "Log::Any" : "1.042",
             "Minion" : "6.0",
             "Mojolicious" : "7.08",

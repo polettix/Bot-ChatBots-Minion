@@ -132,6 +132,87 @@ rules set for ["resolve\_module" in Bot::ChatBots::Utils](https://metacpan.org/p
 
 # METHODS
 
+## **dequeuer**
+
+    my $sub_reference = $obj->dequeuer(%args); # OR
+       $sub_reference = $obj->dequeuer(\%args);
+
+Generate a dequeuer sub reference, which is suitable to be used in
+a Minion worker process for receiving records and sending them to
+a `downstream` pipeline.
+
+The `%args` MUST contain a `downstream` parameter (or its
+lower-precedence alias `processor`) with a tube-compliant sub reference
+or anything that can be transformed into one via
+["pipeline" in Bot::ChatBots::Utils](https://metacpan.org/pod/Bot::ChatBots::Utils#pipeline), which will be invoked inside the Minion
+worker.
+
+The following keys are recognised in `%args`:
+
+- `downstream`
+
+    mandatory parameter (unless `processor` is provided) carrying a tube or
+    _tubifiable_ definition via `Bot::ChatBots::Utils/pipeline` (the latter
+    case assumes that you also have [Data::Tubes](https://metacpan.org/pod/Data::Tubes) installed);
+
+- `name`
+
+    set an alternative name for enqueuing/dequeuing stuff via Minion, defaults
+    to ["name"](#name);
+
+- `prefix`
+
+    set a prefix for automatic transformation of module names via
+    `Bot::ChatBots::Utils/pipeline`, defaults to what set for ["prefix"](#prefix)
+    (i.e. `Bot::ChatBots`);
+
+- `processor`
+
+    low-priority alias for `downstream`, see above.
+
+This method just returns the sub reference, so you will want it if you
+want to manage the Minion worker by yourself (e.g. explicitly calling
+["process\_commands" in Minion::Worker](https://metacpan.org/pod/Minion::Worker#process_commands)). If you just want to install a task,
+you might want to consider the convenience function ["install\_dequeuer"](#install_dequeuer)
+described below.
+
+## **enqueue**
+
+    $obj->enqueue($record); # OR
+    $obj->enqueue($record, $name);
+
+Send a `$record` to the Minion, optionally specifing the `$name` of the
+task (which defaults to ["name"](#name)). It's actually just a convenience
+wrapper around ["enqueuer"](#enqueuer).
+
+## **enqueuer**
+
+    my $sub_reference = $obj->enqueuer();         # OR
+       $sub_reference = $obj->enqueuer($name);
+
+Generate an enqueuer tube, most probably to be used as the last tube in a
+pipeline.
+
+You can optionally pass a `$name` that will be used for enqueuing tasks
+towards the Minion; by default it takes the value from ["name"](#name).
+
+It is not mandatory that ["minion"](#minion) is defined at the time this method is
+called, but it MUST be defined when the `$sub_reference` is called.
+
+## **install\_dequeuer**
+
+    $obj->install_dequeuer(%args); # OR
+    $obj->install_dequeuer(\%args);
+
+Generate a dequeuer subroutine via ["dequeuer"](#dequeuer) and set it as a task in
+Minion (via ["add\_task" in Minion](https://metacpan.org/pod/Minion#add_task)). If you are defining a custom Minion
+worker process that relies on [Mojolicious::Lite](https://metacpan.org/pod/Mojolicious::Lite), you can e.g. do this:
+
+    use Mojolicious::Lite;
+    plugin 'Bot::ChatBots::Minion' ...;
+    app->chatbots->minion->install_dequeuer(downstream => sub { ... });
+    app->start;
+
 ## **logger**
 
     my $logger = $obj->logger;

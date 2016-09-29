@@ -137,6 +137,93 @@ rules set for L<Bot::ChatBots::Utils/resolve_module>.
 
 =head1 METHODS
 
+=head2 B<< dequeuer >>
+
+   my $sub_reference = $obj->dequeuer(%args); # OR
+      $sub_reference = $obj->dequeuer(\%args);
+
+Generate a dequeuer sub reference, which is suitable to be used in
+a Minion worker process for receiving records and sending them to
+a C<downstream> pipeline.
+
+The C<%args> MUST contain a C<downstream> parameter (or its
+lower-precedence alias C<processor>) with a tube-compliant sub reference
+or anything that can be transformed into one via
+L<Bot::ChatBots::Utils/pipeline>, which will be invoked inside the Minion
+worker.
+
+The following keys are recognised in C<%args>:
+
+=over
+
+=item C<downstream>
+
+mandatory parameter (unless C<processor> is provided) carrying a tube or
+I<tubifiable> definition via C<Bot::ChatBots::Utils/pipeline> (the latter
+case assumes that you also have L<Data::Tubes> installed);
+
+=item C<name>
+
+set an alternative name for enqueuing/dequeuing stuff via Minion, defaults
+to L</name>;
+
+=item C<prefix>
+
+set a prefix for automatic transformation of module names via
+C<Bot::ChatBots::Utils/pipeline>, defaults to what set for L</prefix>
+(i.e. C<Bot::ChatBots>);
+
+=item C<processor>
+
+low-priority alias for C<downstream>, see above.
+
+=back
+
+This method just returns the sub reference, so you will want it if you
+want to manage the Minion worker by yourself (e.g. explicitly calling
+L<Minion::Worker/process_commands>). If you just want to install a task,
+you might want to consider the convenience function L</install_dequeuer>
+described below.
+
+
+=head2 B<< enqueue >>
+
+   $obj->enqueue($record); # OR
+   $obj->enqueue($record, $name);
+
+Send a C<$record> to the Minion, optionally specifing the C<$name> of the
+task (which defaults to L</name>). It's actually just a convenience
+wrapper around L</enqueuer>.
+
+=head2 B<< enqueuer >>
+
+   my $sub_reference = $obj->enqueuer();         # OR
+      $sub_reference = $obj->enqueuer($name);
+
+Generate an enqueuer tube, most probably to be used as the last tube in a
+pipeline.
+
+You can optionally pass a C<$name> that will be used for enqueuing tasks
+towards the Minion; by default it takes the value from L</name>.
+
+It is not mandatory that L</minion> is defined at the time this method is
+called, but it MUST be defined when the C<$sub_reference> is called.
+
+=head2 B<< install_dequeuer >>
+
+   $obj->install_dequeuer(%args); # OR
+   $obj->install_dequeuer(\%args);
+
+Generate a dequeuer subroutine via L</dequeuer> and set it as a task in
+Minion (via L<Minion/add_task>). If you are defining a custom Minion
+worker process that relies on L<Mojolicious::Lite>, you can e.g. do this:
+
+   use Mojolicious::Lite;
+   plugin 'Bot::ChatBots::Minion' ...;
+   app->chatbots->minion->install_dequeuer(downstream => sub { ... });
+   app->start;
+
+
 =head2 B<< logger >>
 
    my $logger = $obj->logger;
