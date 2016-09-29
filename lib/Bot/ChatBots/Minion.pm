@@ -1,7 +1,7 @@
 package Bot::ChatBots::Minion;
 use strict;
 use Ouch;
-{ our $VERSION = '0.001'; }
+{ our $VERSION = '0.001001'; }
 
 use Mojo::Base 'Mojolicious::Plugin';
 use Log::Any ();
