@@ -10,8 +10,7 @@ This document describes Bot::ChatBots::Minion version {{\[ version \]}}.
 
     # Just send received records straight to a Minion worker
     use Mojolicious::Lite;
-    plugin Minion => (...);
-    plugin 'Bot::ChatBots::Minion';
+    plugin 'Bot::ChatBots::Minion' => Minion => [...];
     plugin 'Bot::ChatBots::Telegram' => sources => [
        'WebHook',
        processor => app->chatbots->minion->wrapper($processor_in_worker),
@@ -217,14 +216,16 @@ worker process that relies on [Mojolicious::Lite](https://metacpan.org/pod/Mojol
 
     my $logger = $obj->logger;
 
-Accessor for the logger (["get\_logger" in Log::Any](https://metacpan.org/pod/Log::Any#get_logger)).
+Read accessor for the logger (["get\_logger" in Log::Any](https://metacpan.org/pod/Log::Any#get_logger)).
 
 ## **minion**
 
     my $minion = $obj->minion;
     $obj->minion($new_minion_ref);
 
-Accessor for the minion object.
+Accessor for the minion object. If you pass an array reference, it will be
+used for instantiating a new [Minion](https://metacpan.org/pod/Minion) object passing its contents as the
+list provided to the Minion's `new` method.
 
 ## **name**
 
@@ -256,6 +257,16 @@ set to a subroutine reference that returns an instance of the
 
 The argument `$conf` is a hash reference, the following keys are
 supported:
+
+- `minion`
+
+    set ["minion"](#minion). Do not confuse this with `Minion` below!
+
+- `Minion`
+
+    load the [Minion](https://metacpan.org/pod/Minion) plugin in the `$app` and use it for setting ["minion"](#minion).
+    This option points to an array reference that contains the configuration for
+    instantiating the Minion plugin
 
 - `name`
 

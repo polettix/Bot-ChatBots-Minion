@@ -14,8 +14,7 @@ This document describes Bot::ChatBots::Minion version {{[ version ]}}.
 
    # Just send received records straight to a Minion worker
    use Mojolicious::Lite;
-   plugin Minion => (...);
-   plugin 'Bot::ChatBots::Minion';
+   plugin 'Bot::ChatBots::Minion' => Minion => [...];
    plugin 'Bot::ChatBots::Telegram' => sources => [
       'WebHook',
       processor => app->chatbots->minion->wrapper($processor_in_worker),
@@ -228,14 +227,16 @@ worker process that relies on L<Mojolicious::Lite>, you can e.g. do this:
 
    my $logger = $obj->logger;
 
-Accessor for the logger (L<Log::Any/get_logger>).
+Read accessor for the logger (L<Log::Any/get_logger>).
 
 =head2 B<< minion >>
 
    my $minion = $obj->minion;
    $obj->minion($new_minion_ref);
 
-Accessor for the minion object.
+Accessor for the minion object. If you pass an array reference, it will be
+used for instantiating a new L<Minion> object passing its contents as the
+list provided to the Minion's C<new> method.
 
 =head2 B<< name >>
 
@@ -269,6 +270,16 @@ The argument C<$conf> is a hash reference, the following keys are
 supported:
 
 =over
+
+=item C<minion>
+
+set L</minion>. Do not confuse this with C<Minion> below!
+
+=item C<Minion>
+
+load the L<Minion> plugin in the C<$app> and use it for setting L</minion>.
+This option points to an array reference that contains the configuration for
+instantiating the Minion plugin
 
 =item C<name>
 
