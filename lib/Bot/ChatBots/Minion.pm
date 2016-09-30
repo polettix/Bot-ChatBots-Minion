@@ -75,7 +75,15 @@ sub minion {
 sub register {
    my ($self, $app, $conf) = @_;
 
-   $self->minion($conf->{minion} // $app->minion);
+   my $minion;
+   if (my $pconf = $conf->{Minion_plugin}) {
+      $app->plugin(Minion => @{$conf->{Minion_plugin}});
+   }
+   else {
+      $minion = $conf->{minion} // ($app->can('minion') && $app->minion);
+   }
+   $self->minion($minion) if defined $minion;
+
    $self->name($conf->{name}) if exists $conf->{name};
    $self->prefix($conf->{prefix}) if exists $conf->{prefix};
    $self->typename($conf->{typename}) if exists $conf->{typename};
