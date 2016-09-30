@@ -23,8 +23,11 @@ sub dequeuer {
    $ds = pipeline((ref($ds) eq 'ARRAY') ? @$ds : $ds);
 
    return sub {
+      my ($job, $record) = @_;
       $self->logger->info("dequeuing for $name");
-      return $ds->($_[1]);
+      my @retval = $ds->($record);
+      $job->finish('All went well... hopefully');
+      return @retval;
    };
 }
 
