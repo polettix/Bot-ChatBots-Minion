@@ -79,8 +79,8 @@ sub register {
    my ($self, $app, $conf) = @_;
 
    my $minion;
-   if (my $pconf = $conf->{Minion_plugin}) {
-      $app->plugin(Minion => @{$conf->{Minion_plugin}});
+   if (my $pconf = $conf->{Minion}) {
+      $app->plugin(Minion => @{$conf->{Minion}});
    }
    else {
       $minion = $conf->{minion} // eval { $app->minion });
