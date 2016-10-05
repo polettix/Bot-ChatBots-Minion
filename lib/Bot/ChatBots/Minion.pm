@@ -83,7 +83,7 @@ sub register {
       $app->plugin(Minion => @{$conf->{Minion}});
    }
    else {
-      $minion = $conf->{minion} // eval { $app->minion });
+      $minion = $conf->{minion} // eval { $app->minion };
    }
    $self->minion($minion) if defined $minion;
 
