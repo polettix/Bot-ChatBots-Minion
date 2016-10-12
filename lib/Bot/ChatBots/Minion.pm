@@ -81,6 +81,7 @@ sub register {
    my $minion;
    if (my $pconf = $conf->{Minion}) {
       $app->plugin(Minion => @{$conf->{Minion}});
+      $minion = $app->minion;
    }
    else {
       $minion = $conf->{minion} // eval { $app->minion };
