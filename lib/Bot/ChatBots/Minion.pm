@@ -79,8 +79,8 @@ sub register {
    my ($self, $app, $conf) = @_;
 
    my $minion;
-   if (my $pconf = $conf->{Minion}) {
-      $app->plugin(Minion => (ref($pconf) eq 'ARRAY' ? @$pconf : $pconf));
+   if (my $pc = $conf->{Minion}) {
+      $app->plugin(Minion => ((ref($pc) eq 'ARRAY') ? (@$pc) : ($pc)));
       $minion = $app->minion;
    }
    else {
