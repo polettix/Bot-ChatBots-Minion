@@ -80,7 +80,7 @@ sub register {
 
    my $minion;
    if (my $pconf = $conf->{Minion}) {
-      $app->plugin(Minion => @{$conf->{Minion}});
+      $app->plugin(Minion => (ref($pconf) eq 'ARRAY' ? @$pconf : $pconf));
       $minion = $app->minion;
    }
    else {
