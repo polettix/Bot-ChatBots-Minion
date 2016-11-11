@@ -222,13 +222,6 @@ worker process that relies on L<Mojolicious::Lite>, you can e.g. do this:
    app->chatbots->minion->install_dequeuer(downstream => sub { ... });
    app->start;
 
-
-=head2 B<< logger >>
-
-   my $logger = $obj->logger;
-
-Read accessor for the logger (L<Log::Any/get_logger>).
-
 =head2 B<< minion >>
 
    my $minion = $obj->minion;

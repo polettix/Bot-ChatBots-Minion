@@ -4,7 +4,7 @@ use Ouch;
 { our $VERSION = '0.001014'; }
 
 use Mojo::Base 'Mojolicious::Plugin';
-use Log::Any ();
+use Log::Any qw< $log >;
 use Bot::ChatBots::Utils qw< pipeline resolve_module >;
 
 has _minion  => sub { ouch 500, 'no minion set' };
@@ -24,7 +24,7 @@ sub dequeuer {
 
    return sub {
       my ($job, $record) = @_;
-      $self->logger->info("dequeuing for $name");
+      $log->info("dequeuing for $name");
       my @retval = $ds->($record);
       $job->finish('All went well... hopefully');
       return @retval;
@@ -45,7 +45,7 @@ sub enqueuer {
    state $cache = {};
    return $cache->{$name} //= sub {
       my $record = shift;
-      $self->logger->info("enqueueing for $name");
+      $log->info("enqueueing for $name");
       $self->minion->enqueue($name, [$record]);
       return $record;
    };
@@ -59,8 +59,6 @@ sub install_dequeuer {
    $self->minion->add_task($name => $self->dequeuer($args));
    return $self;
 }
-
-sub logger { return Log::Any->get_logger };
 
 sub minion {
    my $self = shift;
