@@ -3,8 +3,8 @@ requires 'Mojolicious',   '7.08';
 requires 'Minion',        '6.0';
 requires 'Ouch',          '0.0409';
 requires 'Log::Any',      '1.042';
-requires 'Bot::ChatBots', '0.001017';
-requires 'Data::Tubes',   '0.735';
+requires 'Bot::ChatBots', '0.001018';
+requires 'Data::Tubes',   '0.735002';
 
 on test => sub {
    requires 'Test::More',              '0.88';
