@@ -1,5 +1,4 @@
 {{$NEXT}}
-   - internal test release
 
-0.001014  2016-10-12 15:55:49 CEST
-   - first test release
+0.002  2016-11-11 23:23:21 CET
+   - first release on CPAN (CPAN Testers seems out these days...)
