@@ -1,19 +1,58 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  Bot-ChatBots-0.001
-    pathname: P/PO/POLETTIX/Bot-ChatBots-0.001.tar.gz
+  CPAN-Meta-2.150010
+    pathname: D/DA/DAGOLDEN/CPAN-Meta-2.150010.tar.gz
     provides:
-      Bot::ChatBots 0.001
-      Bot::ChatBots::Auth 0.001
-      Bot::ChatBots::Base 0.001
-      Bot::ChatBots::Guard 0.001
-      Bot::ChatBots::Utils 0.001
+      CPAN::Meta 2.150010
+      CPAN::Meta::Converter 2.150010
+      CPAN::Meta::Feature 2.150010
+      CPAN::Meta::History 2.150010
+      CPAN::Meta::Merge 2.150010
+      CPAN::Meta::Prereqs 2.150010
+      CPAN::Meta::Spec 2.150010
+      CPAN::Meta::Validator 2.150010
+      Parse::CPAN::Meta 2.150010
     requirements:
-      Log::Any 1.042
-      Mo 0.040
-      Module::Build::Tiny 0.034
-      Module::Runtime 0.014
-      perl 5.010
+      CPAN::Meta::Requirements 2.121
+      CPAN::Meta::YAML 0.011
+      Carp 0
+      Encode 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.17
+      File::Spec 0.80
+      JSON::PP 2.27300
+      Scalar::Util 0
+      perl 5.008001
+      strict 0
+      version 0.88
+      warnings 0
+  CPAN-Meta-YAML-0.018
+    pathname: D/DA/DAGOLDEN/CPAN-Meta-YAML-0.018.tar.gz
+    provides:
+      CPAN::Meta::YAML 0.018
+    requirements:
+      B 0
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.17
+      Fcntl 0
+      Scalar::Util 0
+      perl 5.008001
+      strict 0
+      warnings 0
+  Class-Method-Modifiers-2.12
+    pathname: E/ET/ETHER/Class-Method-Modifiers-2.12.tar.gz
+    provides:
+      Class::Method::Modifiers 2.12
+    requirements:
+      B 0
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      base 0
+      perl 5.006
+      strict 0
+      warnings 0
   DBD-SQLite-1.50
     pathname: I/IS/ISHIGAKI/DBD-SQLite-1.50.tar.gz
     provides:
@@ -128,6 +167,48 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.48
       Test::Simple 0.90
       perl 5.008
+  Data-Dump-1.23
+    pathname: G/GA/GAAS/Data-Dump-1.23.tar.gz
+    provides:
+      Data::Dump 1.23
+      Data::Dump::FilterContext undef
+      Data::Dump::Filtered undef
+      Data::Dump::Trace 0.02
+      Data::Dump::Trace::Call 0.02
+      Data::Dump::Trace::Wrapper 0.02
+    requirements:
+      ExtUtils::MakeMaker 0
+      Symbol 0
+      Test 0
+      perl 5.006
+  Devel-GlobalDestruction-0.14
+    pathname: H/HA/HAARG/Devel-GlobalDestruction-0.14.tar.gz
+    provides:
+      Devel::GlobalDestruction 0.14
+    requirements:
+      ExtUtils::MakeMaker 0
+      Sub::Exporter::Progressive 0.001011
+      perl 5.006
+  Exporter-Declare-0.114
+    pathname: E/EX/EXODIST/Exporter-Declare-0.114.tar.gz
+    provides:
+      Exporter::Declare 0.114
+      Exporter::Declare::Export undef
+      Exporter::Declare::Export::Alias undef
+      Exporter::Declare::Export::Generator undef
+      Exporter::Declare::Export::Sub undef
+      Exporter::Declare::Export::Variable undef
+      Exporter::Declare::Meta undef
+      Exporter::Declare::Specs undef
+    requirements:
+      Carp 0
+      Fennec::Lite 0.004
+      Meta::Builder 0.003
+      Scalar::Util 0
+      Test::Exception 0.29
+      Test::Simple 0.88
+      aliased 0
+      perl v5.8.0
   ExtUtils-Config-0.008
     pathname: L/LE/LEONT/ExtUtils-Config-0.008.tar.gz
     provides:
@@ -167,6 +248,15 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  Fennec-Lite-0.004
+    pathname: E/EX/EXODIST/Fennec-Lite-0.004.tar.gz
+    provides:
+      Fennec::Lite 0.004
+    requirements:
+      List::Util 0
+      Test::Builder 0
+      Test::More 0
+      perl 5.006
   IO-Socket-IP-0.38
     pathname: P/PE/PEVANS/IO-Socket-IP-0.38.tar.gz
     provides:
@@ -175,6 +265,15 @@ DISTRIBUTIONS
       IO::Socket 0
       Socket 1.97
       Test::More 0.88
+  JSON-PP-2.27400
+    pathname: M/MA/MAKAMAKA/JSON-PP-2.27400.tar.gz
+    provides:
+      JSON::PP 2.27400
+      JSON::PP::Boolean 2.27400
+      JSON::PP::IncrParser 2.27400
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
   Log-Any-1.042
     pathname: P/PR/PREACTION/Log-Any-1.042.tar.gz
     provides:
@@ -205,6 +304,24 @@ DISTRIBUTIONS
       perl 5.008001
       strict 0
       warnings 0
+  Log-Log4perl-Tiny-1.4.0
+    pathname: P/PO/POLETTIX/Log-Log4perl-Tiny-1.4.0.tar.gz
+    provides:
+      Log::Log4perl::Tiny 1.004000
+    requirements:
+      Module::Build::Tiny 0.034
+      perl 5.008000
+  Meta-Builder-0.003
+    pathname: E/EX/EXODIST/Meta-Builder-0.003.tar.gz
+    provides:
+      Meta::Builder 0.003
+      Meta::Builder::Base undef
+      Meta::Builder::Util undef
+    requirements:
+      Carp 0
+      Fennec::Lite 0
+      Test::Exception 0
+      Test::More 0
   Minion-6.0
     pathname: S/SR/SRI/Minion-6.0.tar.gz
     provides:
@@ -257,6 +374,73 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006000
+  Mock-Quick-1.111
+    pathname: E/EX/EXODIST/Mock-Quick-1.111.tar.gz
+    provides:
+      Mock::Quick 1.111
+      Mock::Quick::Class undef
+      Mock::Quick::Method undef
+      Mock::Quick::Object undef
+      Mock::Quick::Object::Control undef
+      Mock::Quick::Util undef
+      Object::Quick undef
+    requirements:
+      Carp 0
+      Exporter::Declare 0.103
+      Fennec::Lite 0.004
+      Scalar::Util 0
+      Test::Exception 0.29
+      Test::Simple 0.88
+  Module-Build-0.4220
+    pathname: L/LE/LEONT/Module-Build-0.4220.tar.gz
+    provides:
+      Module::Build 0.4220
+      Module::Build::Base 0.4220
+      Module::Build::Compat 0.4220
+      Module::Build::Config 0.4220
+      Module::Build::Cookbook 0.4220
+      Module::Build::Dumper 0.4220
+      Module::Build::Notes 0.4220
+      Module::Build::PPMMaker 0.4220
+      Module::Build::Platform::Default 0.4220
+      Module::Build::Platform::MacOS 0.4220
+      Module::Build::Platform::Unix 0.4220
+      Module::Build::Platform::VMS 0.4220
+      Module::Build::Platform::VOS 0.4220
+      Module::Build::Platform::Windows 0.4220
+      Module::Build::Platform::aix 0.4220
+      Module::Build::Platform::cygwin 0.4220
+      Module::Build::Platform::darwin 0.4220
+      Module::Build::Platform::os2 0.4220
+      Module::Build::PodParser 0.4220
+    requirements:
+      CPAN::Meta 2.142060
+      CPAN::Meta::YAML 0.003
+      Cwd 0
+      Data::Dumper 0
+      ExtUtils::CBuilder 0.27
+      ExtUtils::Install 0
+      ExtUtils::Manifest 0
+      ExtUtils::Mkbootstrap 0
+      ExtUtils::ParseXS 2.21
+      File::Basename 0
+      File::Compare 0
+      File::Copy 0
+      File::Find 0
+      File::Path 0
+      File::Spec 0.82
+      File::Temp 0.15
+      Getopt::Long 0
+      Module::Metadata 1.000002
+      Parse::CPAN::Meta 1.4401
+      Perl::OSType 1
+      Pod::Man 2.17
+      TAP::Harness 3.29
+      Test::More 0.49
+      Text::Abbrev 0
+      Text::ParseWords 0
+      perl 5.006001
+      version 0.87
   Module-Build-Tiny-0.039
     pathname: L/LE/LEONT/Module-Build-Tiny-0.039.tar.gz
     provides:
@@ -314,8 +498,8 @@ DISTRIBUTIONS
       URI::db 0.15
       URI::file 4.21
       perl 5.010001
-  Mojolicious-7.08
-    pathname: S/SR/SRI/Mojolicious-7.08.tar.gz
+  Mojolicious-7.10
+    pathname: S/SR/SRI/Mojolicious-7.10.tar.gz
     provides:
       Mojo undef
       Mojo::Asset undef
@@ -379,7 +563,7 @@ DISTRIBUTIONS
       Mojo::UserAgent::Transactor undef
       Mojo::Util undef
       Mojo::WebSocket undef
-      Mojolicious 7.08
+      Mojolicious 7.10
       Mojolicious::Command undef
       Mojolicious::Command::cgi undef
       Mojolicious::Command::cpanify undef
@@ -430,13 +614,47 @@ DISTRIBUTIONS
       JSON::PP 2.27103
       Pod::Simple 3.09
       Time::Local 1.2
-  Ouch-0.0409
-    pathname: R/RI/RIZEN/Ouch-0.0409.tar.gz
+  Moo-2.002005
+    pathname: H/HA/HAARG/Moo-2.002005.tar.gz
     provides:
-      Ouch 0.0409
+      Method::Generate::Accessor undef
+      Method::Generate::BuildAll undef
+      Method::Generate::Constructor undef
+      Method::Generate::DemolishAll undef
+      Moo 2.002005
+      Moo::HandleMoose undef
+      Moo::HandleMoose::FakeConstructor undef
+      Moo::HandleMoose::FakeMetaClass undef
+      Moo::HandleMoose::_TypeMap undef
+      Moo::Object undef
+      Moo::Role 2.002005
+      Moo::_Utils undef
+      Moo::_mro undef
+      Moo::_strictures undef
+      Moo::sification undef
+      Sub::Defer 2.002005
+      Sub::Quote 2.002005
+      oo undef
     requirements:
-      ExtUtils::MakeMaker 6.30
+      Class::Method::Modifiers 1.1
+      Devel::GlobalDestruction 0.11
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      Module::Runtime 0.014
+      Role::Tiny 2.000004
+      Scalar::Util 0
+      perl 5.006
+  Ouch-0.0410
+    pathname: R/RI/RIZEN/Ouch-0.0410.tar.gz
+    provides:
+      Ouch 0.0410
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
       Test::More 0
+      Test::Trap 0
+      overload 0
+      parent 0
   Path-Tiny-0.096
     pathname: D/DA/DAGOLDEN/Path-Tiny-0.096.tar.gz
     provides:
@@ -462,6 +680,31 @@ DISTRIBUTIONS
       perl 5.008001
       strict 0
       warnings 0
+  Role-Tiny-2.000005
+    pathname: H/HA/HAARG/Role-Tiny-2.000005.tar.gz
+    provides:
+      Role::Tiny 2.000005
+      Role::Tiny::With 2.000005
+    requirements:
+      Exporter 5.57
+      perl 5.006
+  Sub-Exporter-Progressive-0.001013
+    pathname: F/FR/FREW/Sub-Exporter-Progressive-0.001013.tar.gz
+    provides:
+      Sub::Exporter::Progressive 0.001013
+    requirements:
+      ExtUtils::MakeMaker 0
+  Sub-Uplevel-0.2600
+    pathname: D/DA/DAGOLDEN/Sub-Uplevel-0.2600.tar.gz
+    provides:
+      Sub::Uplevel 0.2600
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 6.17
+      constant 0
+      perl 5.006
+      strict 0
+      warnings 0
   Template-Perlish-1.52
     pathname: P/PO/POLETTIX/Template-Perlish-1.52.tar.gz
     provides:
@@ -469,6 +712,34 @@ DISTRIBUTIONS
     requirements:
       Module::Build::Tiny 0.034
       perl 5.008000
+  Test-Exception-0.43
+    pathname: E/EX/EXODIST/Test-Exception-0.43.tar.gz
+    provides:
+      Test::Exception 0.43
+    requirements:
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      Sub::Uplevel 0.18
+      Test::Builder 0.7
+      Test::Builder::Tester 1.07
+      Test::Harness 2.03
+      base 0
+      perl 5.006001
+      strict 0
+      warnings 0
+  Test-Fatal-0.014
+    pathname: R/RJ/RJBS/Test-Fatal-0.014.tar.gz
+    provides:
+      Test::Fatal 0.014
+    requirements:
+      Carp 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      Test::Builder 0
+      Try::Tiny 0.07
+      strict 0
+      warnings 0
   Test-Harness-3.36
     pathname: L/LE/LEONT/Test-Harness-3.36.tar.gz
     provides:
@@ -523,6 +794,111 @@ DISTRIBUTIONS
       Test::Harness 3.36
     requirements:
       ExtUtils::MakeMaker 0
+  Test-Requires-0.10
+    pathname: T/TO/TOKUHIROM/Test-Requires-0.10.tar.gz
+    provides:
+      Test::Requires 0.10
+    requirements:
+      ExtUtils::MakeMaker 6.64
+      Test::Builder::Module 0
+      Test::More 0.47
+      perl 5.006
+  Test-Simple-1.302062
+    pathname: E/EX/EXODIST/Test-Simple-1.302062.tar.gz
+    provides:
+      Test2 1.302062
+      Test2::API 1.302062
+      Test2::API::Breakage 1.302062
+      Test2::API::Context 1.302062
+      Test2::API::Instance 1.302062
+      Test2::API::Stack 1.302062
+      Test2::Event 1.302062
+      Test2::Event::Bail 1.302062
+      Test2::Event::Diag 1.302062
+      Test2::Event::Exception 1.302062
+      Test2::Event::Generic 1.302062
+      Test2::Event::Info 1.302062
+      Test2::Event::Note 1.302062
+      Test2::Event::Ok 1.302062
+      Test2::Event::Plan 1.302062
+      Test2::Event::Skip 1.302062
+      Test2::Event::Subtest 1.302062
+      Test2::Event::Waiting 1.302062
+      Test2::Formatter 1.302062
+      Test2::Formatter::TAP 1.302062
+      Test2::Hub 1.302062
+      Test2::Hub::Interceptor 1.302062
+      Test2::Hub::Interceptor::Terminator 1.302062
+      Test2::Hub::Subtest 1.302062
+      Test2::IPC 1.302062
+      Test2::IPC::Driver 1.302062
+      Test2::IPC::Driver::Files 1.302062
+      Test2::Util 1.302062
+      Test2::Util::ExternalMeta 1.302062
+      Test2::Util::HashBase 1.302062
+      Test2::Util::Trace 1.302062
+      Test::Builder 1.302062
+      Test::Builder::Formatter 1.302062
+      Test::Builder::IO::Scalar 2.113
+      Test::Builder::Module 1.302062
+      Test::Builder::Tester 1.302062
+      Test::Builder::Tester::Color 1.302062
+      Test::Builder::Tester::Tie 1.302062
+      Test::Builder::TodoDiag 1.302062
+      Test::More 1.302062
+      Test::Simple 1.302062
+      Test::Tester 1.302062
+      Test::Tester::Capture 1.302062
+      Test::Tester::CaptureRunner 1.302062
+      Test::Tester::Delegate 1.302062
+      Test::use::ok 1.302062
+      ok 1.302062
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Spec 0
+      File::Temp 0
+      PerlIO 0
+      Scalar::Util 1.13
+      Storable 0
+      perl 5.008001
+      utf8 0
+  Test-Trap-v0.3.2
+    pathname: E/EB/EBHANSSEN/Test-Trap-v0.3.2.tar.gz
+    provides:
+      Test::Trap 0.003002
+      Test::Trap::Builder 0.003002
+      Test::Trap::Builder::PerlIO 0.003002
+      Test::Trap::Builder::SystemSafe 0.003002
+      Test::Trap::Builder::TempFile 0.003002
+    requirements:
+      Carp 0
+      Data::Dump 0
+      Exporter 0
+      File::Temp 0
+      IO::Handle 0
+      Module::Build 0
+      Test::Builder 0
+      Test::More 0
+      Test::Tester 0.107
+      base 0
+      constant 0
+      lib 0
+      perl v5.6.2
+      strict 0
+      version 0
+      warnings 0
+  Try-Tiny-0.27
+    pathname: E/ET/ETHER/Try-Tiny-0.27.tar.gz
+    provides:
+      Try::Tiny 0.27
+    requirements:
+      Carp 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      constant 0
+      perl 5.006
+      strict 0
+      warnings 0
   URI-1.71
     pathname: E/ET/ETHER/URI-1.71.tar.gz
     provides:
@@ -646,3 +1022,14 @@ DISTRIBUTIONS
       URI 1.40
       URI::Nested 0.10
       perl 5.008001
+  aliased-0.34
+    pathname: E/ET/ETHER/aliased-0.34.tar.gz
+    provides:
+      aliased 0.34
+    requirements:
+      Carp 0
+      Exporter 0
+      Module::Build::Tiny 0.039
+      perl 5.006
+      strict 0
+      warnings 0

@@ -198,6 +198,13 @@ towards the Minion; by default it takes the value from ["name"](#name).
 It is not mandatory that ["minion"](#minion) is defined at the time this method is
 called, but it MUST be defined when the `$sub_reference` is called.
 
+## **helper\_name**
+
+    my $helper_name = $self->helper_name;
+
+Default helper name. This is used by ["register"](#register) in case `$conf` does not
+contain a `helper_name` itself.
+
 ## **install\_dequeuer**
 
     $obj->install_dequeuer(%args); # OR
@@ -211,12 +218,6 @@ worker process that relies on [Mojolicious::Lite](https://metacpan.org/pod/Mojol
     plugin 'Bot::ChatBots::Minion' ...;
     app->chatbots->minion->install_dequeuer(downstream => sub { ... });
     app->start;
-
-## **logger**
-
-    my $logger = $obj->logger;
-
-Read accessor for the logger (["get\_logger" in Log::Any](https://metacpan.org/pod/Log::Any#get_logger)).
 
 ## **minion**
 
@@ -234,14 +235,6 @@ list provided to the Minion's `new` method.
 
 Accessor for the name of the object, also used as topic for queuing tasks.
 Defaults to the value of ["typename"](#typename).
-
-## **prefix**
-
-    my $prefix = $obj->prefix;
-    $obj->prefix($string);
-
-Accessor for the default prefix string (see
-["resolve\_module" in Bot::ChatBots](https://metacpan.org/pod/Bot::ChatBots#resolve_module)). Defaults to `Bot::ChatBots`.
 
 ## **register**
 
@@ -279,15 +272,6 @@ supported:
 - `typename`
 
     set ["typename"](#typename)
-
-## **typename**
-
-    my $typename = $obj->typename;
-    $obj->typename('new typename');
-
-Accessor for a _typename_ string that can be useful for
-logging/debugging. Defaults to the package name of which the object is
-blessed (via `ref`) or to the name of the package.
 
 ## **wrapper**
 

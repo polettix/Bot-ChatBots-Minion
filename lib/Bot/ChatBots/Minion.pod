@@ -208,6 +208,13 @@ towards the Minion; by default it takes the value from L</name>.
 It is not mandatory that L</minion> is defined at the time this method is
 called, but it MUST be defined when the C<$sub_reference> is called.
 
+=head2 B<< helper_name >>
+
+   my $helper_name = $self->helper_name;
+
+Default helper name. This is used by L</register> in case C<$conf> does not
+contain a C<helper_name> itself.
+
 =head2 B<< install_dequeuer >>
 
    $obj->install_dequeuer(%args); # OR
@@ -238,14 +245,6 @@ list provided to the Minion's C<new> method.
 
 Accessor for the name of the object, also used as topic for queuing tasks.
 Defaults to the value of L</typename>.
-
-=head2 B<< prefix >>
-
-   my $prefix = $obj->prefix;
-   $obj->prefix($string);
-
-Accessor for the default prefix string (see
-L<Bot::ChatBots/resolve_module>). Defaults to C<Bot::ChatBots>.
 
 =head2 B<< register >>
 
@@ -287,16 +286,6 @@ set L</prefix>
 set L</typename>
 
 =back
-
-
-=head2 B<< typename >>
-
-   my $typename = $obj->typename;
-   $obj->typename('new typename');
-
-Accessor for a I<typename> string that can be useful for
-logging/debugging. Defaults to the package name of which the object is
-blessed (via C<ref>) or to the name of the package.
 
 =head2 B<< wrapper >>
 

@@ -1,16 +1,14 @@
 package Bot::ChatBots::Minion;
 use strict;
-use Ouch;
 { our $VERSION = '0.001014'; }
 
-use Mojo::Base 'Mojolicious::Plugin';
+use Ouch;
 use Log::Any qw< $log >;
-use Bot::ChatBots::Utils qw< pipeline resolve_module >;
+use Bot::ChatBots::Utils qw< pipeline >;
+use Mojo::Base 'Mojolicious::Plugin';
 
 has _minion  => sub { ouch 500, 'no minion set' };
-has name     => sub { shift->typename };
-has prefix   => 'Bot::ChatBots';
-has typename => sub { return ref($_[0]) || $_[0] };
+has name     => sub { return ref($_[0]) || $_[0] };
 
 sub dequeuer {
    my $self = shift;
@@ -19,7 +17,7 @@ sub dequeuer {
    my $name = $args->{name} // $self->name // '<unknown dequeuer>';
 
    my $ds = $args->{downstream} // $args->{processor}
-     or ouch 500, 'no processor provided for dequeuer';
+     or ouch 500, 'no processor/downstream provided for dequeuer';
    $ds = pipeline((ref($ds) eq 'ARRAY') ? @$ds : $ds);
 
    return sub {
@@ -49,6 +47,12 @@ sub enqueuer {
       $self->minion->enqueue($name, [$record]);
       return $record;
    };
+}
+
+sub helper_name {
+   my $self = shift;
+   (my $name = lc(ref $self || $self)) =~ s{.*::}{}mxs;
+   return "chatbots.$name";
 }
 
 sub install_dequeuer {
@@ -87,10 +91,9 @@ sub register {
    $self->minion($minion) if defined $minion;
 
    $self->name($conf->{name}) if exists $conf->{name};
-   $self->prefix($conf->{prefix}) if exists $conf->{prefix};
-   $self->typename($conf->{typename}) if exists $conf->{typename};
 
-   $app->helper('chatbots.minion' => sub { $self });
+   my $helper_name = $conf->{helper_name} // $self->helper_name;
+   $app->helper($helper_name => sub { return $self });
 
    return $self;
 } ## end sub register
