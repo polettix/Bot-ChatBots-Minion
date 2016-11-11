@@ -39,8 +39,8 @@
       },
       "runtime" : {
          "requires" : {
-            "Bot::ChatBots" : "0.001017",
-            "Data::Tubes" : "0.736",
+            "Bot::ChatBots" : "0.001018",
+            "Data::Tubes" : "0.735002",
             "Log::Any" : "1.042",
             "Minion" : "6.0",
             "Mojolicious" : "7.08",
@@ -51,6 +51,7 @@
       "test" : {
          "requires" : {
             "Minion::Backend::SQLite" : "0.007",
+            "Mock::Quick" : "1.111",
             "Path::Tiny" : "0.096",
             "Test::More" : "0.88",
             "Test::Trap" : "0"
@@ -58,6 +59,17 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/polettix/Bot-ChatBots-Minion/issues"
+      },
+      "homepage" : "https://github.com/polettix/Bot-ChatBots-Minion",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/polettix/Bot-ChatBots-Minion.git",
+         "web" : "https://github.com/polettix/Bot-ChatBots-Minion"
+      }
+   },
    "version" : "0.001014",
    "x_contributors" : [
       "Flavio Poletti <flavio@polettix.it>"
