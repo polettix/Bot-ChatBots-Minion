@@ -39,8 +39,8 @@
       },
       "runtime" : {
          "requires" : {
-            "Bot::ChatBots" : "0.001018",
-            "Data::Tubes" : "0.735002",
+            "Bot::ChatBots" : "0.006",
+            "Data::Tubes" : "0.736",
             "Log::Any" : "1.042",
             "Minion" : "6.0",
             "Mojolicious" : "7.08",
@@ -70,7 +70,7 @@
          "web" : "https://github.com/polettix/Bot-ChatBots-Minion"
       }
    },
-   "version" : "0.002",
+   "version" : "0.004",
    "x_contributors" : [
       "Flavio Poletti <flavio@polettix.it>"
    ]
