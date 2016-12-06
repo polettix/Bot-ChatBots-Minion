@@ -1,5 +1,6 @@
 package Bot::ChatBots::Minion;
 use strict;
+use warnings;
 { our $VERSION = '0.002'; }
 
 use Ouch;

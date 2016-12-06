@@ -1,4 +1,5 @@
 {{$NEXT}}
+   - use warnings
    - tracking project via Travis-CI (.travis.yml)
    - badges!
 
