@@ -1,5 +1,27 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
+  Bot-ChatBots-0.006
+    pathname: P/PO/POLETTIX/Bot-ChatBots-0.006.tar.gz
+    provides:
+      Bot::ChatBots 0.006
+      Bot::ChatBots::Auth 0.006
+      Bot::ChatBots::MojoPlugin 0.006
+      Bot::ChatBots::Role::Processor 0.006
+      Bot::ChatBots::Role::Sender 0.006
+      Bot::ChatBots::Role::Source 0.006
+      Bot::ChatBots::Role::UserAgent 0.006
+      Bot::ChatBots::Role::WebHook 0.006
+      Bot::ChatBots::Utils 0.006
+      Bot::ChatBots::Weak 0.006
+    requirements:
+      Log::Any 1.042
+      Module::Build::Tiny 0.034
+      Module::Runtime 0.014
+      Mojolicious 7.10
+      Moo 2.002005
+      Ouch 0.0410
+      Try::Tiny 0.27
+      perl 5.010
   CPAN-Meta-2.150010
     pathname: D/DA/DAGOLDEN/CPAN-Meta-2.150010.tar.gz
     provides:
@@ -181,6 +203,27 @@ DISTRIBUTIONS
       Symbol 0
       Test 0
       perl 5.006
+  Data-Tubes-0.736
+    pathname: P/PO/POLETTIX/Data-Tubes-0.736.tar.gz
+    provides:
+      Data::Tubes 0.736
+      Data::Tubes::Plugin::Parser 0.736
+      Data::Tubes::Plugin::Plumbing 0.736
+      Data::Tubes::Plugin::Reader 0.736
+      Data::Tubes::Plugin::Renderer 0.736
+      Data::Tubes::Plugin::Source 0.736
+      Data::Tubes::Plugin::Util 0.736
+      Data::Tubes::Plugin::Validator 0.736
+      Data::Tubes::Plugin::Writer 0.736
+      Data::Tubes::Util 0.736
+      Data::Tubes::Util::Cache 0.736
+      Data::Tubes::Util::Output 0.736
+    requirements:
+      Log::Log4perl::Tiny v1.2.9
+      Mo 0.39
+      Module::Build::Tiny 0.034
+      Template::Perlish 1.52
+      perl 5.010000
   Devel-GlobalDestruction-0.14
     pathname: H/HA/HAARG/Devel-GlobalDestruction-0.14.tar.gz
     provides:
